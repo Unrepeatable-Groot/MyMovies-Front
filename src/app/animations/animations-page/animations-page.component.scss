@@ -1,0 +1,50 @@
+@use '../animation-pages';
+
+.Box {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: end;
+    
+    .NavBox { 
+        width: 200px;
+        height: 40px;
+        margin: 30px;
+        display: flex;
+
+        a {
+            text-decoration: none;
+            width: 20%;
+
+            .Pages {
+                width: 100%;
+                height: 100%;
+                border-left: 3px solid black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 1s;
+
+                &:hover {
+                    background-color: red;
+                    color: yellow;
+                    transition: all 1s;
+                }
+
+                span {
+                    font-size: 20px;
+                    font-weight: bold;
+                    text-decoration: line-through;
+                }
+            }
+            #last {
+                border-right: 3px solid black;
+            }
+        }
+        .active {
+            background-color: red;
+            color: yellow;
+        }
+    }
+}

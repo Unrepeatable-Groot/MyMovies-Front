@@ -1,0 +1,26 @@
+<div class="box">
+  <a *ngFor="let serial of serialsOnPage"
+     [routerLink]="['/serials', serial.id]">
+    <div class="card">
+      <img [src]="serial.cardImageUrl" [alt]="serial.title">
+      <div class="GEO"><span>GEO</span></div>
+      <div class="ENG"><span>ENG</span></div>
+      <div class="hover"></div>
+      <div class="button"></div>
+      <i class="fa-solid fa-play"></i>
+    </div>
+    <div class="title"><p>{{ serial.title }}</p></div>
+  </a>
+</div>
+
+<div class="Box">
+  <div class="NavBox">
+    <a *ngFor="let page of [].constructor(totalPages); let i = index"
+       [routerLink]="'/serials/page/' + (i + 1)"
+       routerLinkActive="active">
+      <div class="Pages">
+        <span>{{ i + 1 }}</span>
+      </div>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+@mixin button {
+    .hover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        border-radius: 10px;
+        transition: all 0.5s;
+        opacity: 0;
+    }
+    .button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: yellow;
+        transition: all 0.5s;
+        opacity: 0;
+    }
+    i {
+        color: white;
+        font-size: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-40%, -50%);
+        transition: all 0.5s;
+        opacity: 0;
+    }
+    &:hover > .hover {
+        opacity: 0.4;
+        transition: all 0.5s;
+    }
+    &:hover > .button, &:hover > i {
+        opacity: 1;
+        transition: all 0.5s;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+    }
+}
+
+
+
+.box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 10px;  
+
+    a {
+        text-decoration: none;
+        width: clamp(150px, 20%, 220px);
+ 
+        .card {
+            width: 100%; 
+            aspect-ratio: 12 / 17;  
+            border: 3px solid black;
+            border-radius: 18px; 
+            position: relative;
+            cursor: pointer;
+            @include button();
+            box-shadow: 2px 2px 4px red;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 14px;
+            }
+
+            .GEO, .ENG {
+                position: absolute;
+                bottom: 8px;
+                height: 25px;
+                width: 40px;
+                border: 3px solid white;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+
+                span {
+                    font-weight: bold;
+                    font-size: 12px;
+                    color: white;
+                }
+            }
+            .GEO {
+                left: 8px;
+            }
+            .ENG {
+                right: 8px;
+            }
+        }
+        .title {
+            width: 100%;
+            height: auto;
+            text-align: center;
+            padding-top: 5px;
+
+            p {
+                font-size: 15px;
+                font-weight: bold;
+                color: black;
+            }
+        }
+    }
+}
+@media screen and (max-width: 992px) {
+    .box {
+        max-width: 750px;
+        margin: 50px auto;
+
+        a {
+            width: clamp(100px, 30%, 150px);
+
+            .title {
+                p {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 552px) {
+    .box {
+        a {
+            height: auto;
+            .card {
+                border-radius: 10px;
+
+                img {
+                    border-radius: 5px;
+                }
+
+                .GEO, .ENG {
+                    width: 30px;
+                    height: 20px;
+                    border-width: 2px;
+                    border-radius: 5px;
+                        
+                    span {
+                        font-size: 9px;
+                    }
+                }
+            }
+            .title {
+                p {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}

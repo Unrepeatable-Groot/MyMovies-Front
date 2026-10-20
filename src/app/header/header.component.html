@@ -1,0 +1,62 @@
+<header>
+    <div id="left">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <h1>
+                <img src="assets/images/logo.png" alt="Logo">
+            </h1>
+        </a>
+
+        <nav>
+            <a routerLink="/movies/page/1" routerLinkActive="active">Movies</a>
+            <a routerLink="/serials/page/1" routerLinkActive="active">Series</a>
+            <a routerLink="/animations/page/1" routerLinkActive="active">Animations</a>
+        </nav>
+    </div>
+
+    <label for="Menu">
+        <i class="fa-solid fa-bars"></i>
+    </label>
+    <input type="checkbox" id="Menu">
+
+    <div id="right">
+        <a href="https://www.facebook.com/Moviesqartulad" target="_blank">
+            <i class="fa-brands fa-square-facebook" id="Facebook"></i>
+            <span id="F-Text">Facebook</span>
+        </a>
+
+        <form (submit)="onSearch($event)">
+            <input type="text"
+                    [(ngModel)]="searchQuery"
+                    name="search"
+                    placeholder="Search..."
+                    required>
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+        <!-- Login / Profile -->
+        <ng-container *ngIf="authService.isLoggedIn(); else notLoggedIn">
+            <a routerLink="/profile" class="profile-btn">
+                <div class="profile-circle">
+                    <img *ngIf="profileImage; else defaultIcon" [src]="profileImage" alt="Profile">
+                    <ng-template #defaultIcon>
+                        <i class="fa-regular fa-user"></i>
+                    </ng-template>
+                </div>
+            </a>
+        </ng-container>
+        <ng-template #notLoggedIn>
+            <a routerLink="/logIn">
+                <i class="fa-regular fa-user" id="Log-In"></i>
+                <span id="L-Text">Log-In</span>
+            </a>
+        </ng-template>
+
+        <nav id="nav2">
+            <a routerLink="/movies/page/1" routerLinkActive="active">Movies</a>
+            <a routerLink="/serials/page/1" routerLinkActive="active">Series</a>
+            <a routerLink="/animations/page/1" routerLinkActive="active">Animations</a>
+        </nav>
+    </div>
+</header>   

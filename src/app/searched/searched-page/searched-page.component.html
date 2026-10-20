@@ -1,0 +1,26 @@
+<div class="box">
+
+  <a *ngFor="let item of results"
+     [routerLink]="['/', item.type, item.id]"
+     ]>
+
+    <div class="card">
+      <img [src]="item.cardImageUrl" alt="Banner">
+      <div class="GEO"><span>GEO</span></div>
+      <div class="ENG"><span>ENG</span></div>
+      <div class="hover"></div>
+      <div class="button"></div>
+      <i class="fa-solid fa-play"></i>
+    </div>
+
+    <div class="title">
+      <p>{{ item.title }}</p>
+    </div>
+
+  </a>
+
+</div>
+
+<div *ngIf="results.length === 0">
+  <h2>ვერაფერი მოიძებნა</h2>
+</div>

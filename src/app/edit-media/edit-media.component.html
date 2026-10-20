@@ -1,0 +1,61 @@
+<div class="container1">
+  <div class="box">
+
+    <div class="form">
+      <h2>Edit Movie</h2>
+
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" [(ngModel)]="movieDto.title" placeholder="Enter title">
+      </div>
+
+      <div class="form-group">
+        <label>Card Image URL</label>
+        <input type="text" [(ngModel)]="movieDto.cardImageUrl" placeholder="Enter card image URL">
+      </div>
+
+      <div class="form-group">
+        <label>Banner Image URL</label>
+        <input type="text" [(ngModel)]="movieDto.bannerImageUrl" placeholder="Enter banner image URL">
+      </div>
+
+      <div class="form-group">
+        <label>Genre</label>
+        <input type="text" [(ngModel)]="movieDto.genre" placeholder="Enter genre">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Release Year</label>
+          <input type="number" [(ngModel)]="movieDto.releaseYear" placeholder="Year">
+        </div>
+
+        <div class="form-group">
+          <label>IMDB Rating</label>
+          <input type="number" [(ngModel)]="movieDto.imdbRating" placeholder="0-10" min="0" max="10" step="0.1">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Director</label>
+        <input type="text" [(ngModel)]="movieDto.director" placeholder="Enter director">
+      </div>
+
+      <div class="form-group">
+        <label>Actors</label>
+        <input type="text" [(ngModel)]="movieDto.actors" placeholder="Enter actors">
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea [(ngModel)]="movieDto.description" placeholder="Enter description" rows="4"></textarea>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+
+      <button class="submit" (click)="onSubmit()">Save Changes</button>
+
+    </div>
+  </div>
+</div>

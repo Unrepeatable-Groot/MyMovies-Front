@@ -1,0 +1,78 @@
+<div class="profile-container" *ngIf="user">
+
+  <div class="left">
+    <div class="avatar">
+      <img *ngIf="user.profileImageUrl; else defaultAvatar" [src]="user.profileImageUrl" alt="Profile">
+      <ng-template #defaultAvatar>
+        <i class="fa-regular fa-user"></i>
+      </ng-template>
+    </div>
+
+    <h2>{{ user.username }}</h2>
+    <p class="email">{{ user.email }}</p>
+    <p class="role">{{ user.role === 0 ? 'User' : user.role === 1 ? 'Admin' : 'Owner' }}</p>
+
+    <div class="actions">
+      <button (click)="showUsernameForm = !showUsernameForm; showEmailForm = false; showPasswordForm = false">
+        <i class="fa-solid fa-pen"></i> Edit Profile
+      </button>
+      <button (click)="showEmailForm = !showEmailForm; showUsernameForm = false; showPasswordForm = false">
+        <i class="fa-solid fa-envelope"></i> Change Email
+      </button>
+      <button (click)="showPasswordForm = !showPasswordForm; showUsernameForm = false; showEmailForm = false">
+        <i class="fa-solid fa-lock"></i> Change Password
+      </button>
+      <button *ngIf="isAdmin()" routerLink="/admin/upload" class="admin-btn">
+        <i class="fa-solid fa-plus"></i> Add Movie
+      </button>
+      <button class="logout-btn" (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+
+    <!-- Forms -->
+    <div class="form-box" *ngIf="showUsernameForm">
+      <input type="text" [(ngModel)]="editProfile.username" placeholder="New username">
+      <input type="text" [(ngModel)]="editProfile.profileImageUrl" placeholder="Profile image URL">
+      <button (click)="updateUsername()">Save</button>
+    </div>
+
+    <div class="form-box" *ngIf="showEmailForm">
+      <input type="password" [(ngModel)]="emailDto.currentPassword" placeholder="Current password">
+      <input type="email" [(ngModel)]="emailDto.newEmail" placeholder="New email">
+      <button (click)="changeEmail()">Save</button>
+    </div>
+
+    <div class="form-box" *ngIf="showPasswordForm">
+      <input type="password" [(ngModel)]="passwordDto.currentPassword" placeholder="Current password">
+      <input type="password" [(ngModel)]="passwordDto.newPassword" placeholder="New password">
+      <button (click)="changePassword()">Save</button>
+    </div>
+
+    <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+
+  <div class="right">
+    <h3>Favorite Movies 
+      <span class="fav-count" [class.nearLimit]="favoriteMovies.length >= 45">
+        {{ favoriteMovies.length }}/50
+      </span>
+    </h3>
+    <div class="favorites-grid" *ngIf="favoriteMovies.length > 0; else noFavorites">
+      <div class="fav-card" *ngFor="let movie of favoriteMovies">
+        <a [routerLink]="['/', movie.category === 0 ? 'movies' : movie.category === 1 ? 'serials' : 'animations', movie.id]">
+          <img [src]="movie.cardImageUrl" [alt]="movie.title">
+          <p>{{ movie.title }}</p>
+        </a>
+        <button class="remove-btn" (click)="removeFavorite(movie.id)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+    <ng-template #noFavorites>
+      <p class="no-favorites">No favorite movies yet.</p>
+    </ng-template>
+  </div>
+
+</div>

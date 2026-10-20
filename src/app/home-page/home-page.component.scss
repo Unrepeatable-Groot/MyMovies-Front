@@ -1,0 +1,495 @@
+@mixin button {
+    .hover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        border-radius: 10px;
+        transition: all 0.5s;
+        opacity: 0;
+    }
+    .button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px; 
+        height: 80px;
+        border-radius: 50%;
+        background-color: yellow;
+        transition: all 0.5s;
+        opacity: 0;
+    }
+    i {
+        color: white;
+        font-size: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-40%, -50%);
+        transition: all 0.5s;
+        opacity: 0;
+    }
+    &:hover > .hover {
+        opacity: 0.4;
+        transition: all 0.5s;
+    }
+    &:hover > .button, &:hover > i {
+        opacity: 1;
+        transition: all 0.5s;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+    }
+}
+
+
+.main {
+    width: 100%;
+    height: 520px;
+    background-image: url(../../assets/images/Polar-new-banner.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .inside {
+        max-width: 1400px;
+        height: 430px;
+        
+        .up {
+            width: 100%;
+            height: 12%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            h2 {
+                margin: 0px;
+                color: white;
+                font-size: 20px;
+                margin-left: 10px;
+                text-shadow: 0px 0px 3px black;
+            }
+            div {
+                i {
+                    color: white;
+                    margin: 10px;
+                    font-size: 20px;
+                    cursor: pointer;
+                    text-shadow: 0px 0px 3px black;
+                }
+            }
+        }
+        .middle {
+            width: 100%;
+            height: 82%;
+            display: flex;
+            align-items: center;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            gap: 1.28%;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            scrollbar-width: none;
+
+
+            .cardBox {
+                flex-shrink: 0;
+                height: 100%;
+                width: 15.6%;
+                margin-bottom: 0px;
+                display: flex;
+                flex-direction: column;
+
+                a {
+                    width: 100%;
+                    max-height: 90%;
+                    flex: 1;
+                    min-height: 0; 
+
+                    .card {
+                        width: 100%;
+                        height: 100%;
+                        border: 4px solid black;
+                        border-radius: 18px;  
+                        position: relative;
+                        cursor: pointer;
+                        @include button(); 
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 12px;
+                        }
+
+                        .GEO, .ENG {
+                            position: absolute;
+                            bottom: 8px;
+                            height: 25px;
+                            width: 40px;
+                            border: 3px solid white;
+                            border-radius: 10px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+
+                            span {
+                                font-weight: bold;
+                                font-size: 12px;
+                                color: white;
+                            }
+                        }
+                        .GEO {
+                            left: 8px;
+                        }
+                        .ENG {
+                            right: 8px;
+                        }
+                    }
+                }
+
+                .title {
+                    flex-shrink: 0; 
+                    margin: 5px;
+                    margin-right: 7px;
+                    margin-left: 7px;
+                    display: flex;
+                    align-items: top;
+                    justify-content: center;
+                    text-align: center;
+
+                    p {
+                        margin: 0px;
+                        font-size: 14px;
+                        color: black;
+                        text-shadow: 0px 0px 1px black;
+                        font-weight: bold;
+
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .movieN {
+                        color: white;
+                        text-shadow: 0px 0px 3px black;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.main2 {
+    margin-top: 50px;
+    background-image: url(../../assets/images/Banner.jpg);
+}
+
+.main4 {
+    background-image: none;
+}
+
+.main3 {
+    background-image: url(../../assets/images/Banner.jpg);
+    margin-bottom: 55px;
+}
+
+.popular {
+    width: 100%;
+    height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .inside {
+        max-width: 1350px;
+        height: 100%;
+        
+        .up {
+            width: 100%;
+            height: 12%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            h2 {
+                margin: 0px;
+                color: white;
+                font-size: 20px;
+                margin-left: 10px;
+                text-shadow: 0px 0px 3px black;
+            }
+            div {
+                i {
+                    color: white;
+                    margin: 10px;
+                    font-size: 20px;
+                    cursor: pointer;
+                    text-shadow: 0px 0px 3px black;
+                }
+            }
+        }
+        .middle {
+            width: 100%;
+            height: 240px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            overflow-x: hidden;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            gap: 1.25%;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            scrollbar-width: none;
+
+            a {
+                flex-shrink: 0;
+                width: 32.5%;
+                aspect-ratio: 16 / 8.2;
+
+                .cards {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0px;
+                    cursor: pointer;
+                    position: relative;
+                    @include button();
+                    
+                    .hover {
+                        top: 0px;
+                        border-radius: 18px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+@media screen and (max-width: 1400px) {
+    .main {
+        width: 100%;
+        height: 520px;
+    
+        .inside {
+            max-width: 1200px;
+            height: 380px;
+        }
+    }
+    .popular {
+        height: 290px;
+
+        .inside {
+            max-width: 1200px;
+
+            .middle {
+                height: 210px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1240px) {
+    .main {
+        .inside {
+            max-width: 900px;
+
+            .middle {
+                height: 87%;
+                gap: 1.33%;
+
+                .cardBox {
+                    width: 24%;
+                }
+            }
+        }
+    }
+    .popular {
+        height: auto;
+        padding: 25px 0px;
+
+        .inside {
+            max-width: 900px;
+
+            .middle {
+                height: auto;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main {
+        height: 470px;
+
+        .inside {
+            max-width: 750px;
+            height: 70%;
+        }
+    }
+    .popular {
+        padding: 20px 0px;
+
+        .inside {
+            max-width: 750px;
+        }
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .main {
+        height: 67.5vw;
+
+        .inside {
+            width: 95%;
+            height: 55.8vw;
+
+            .up {
+                align-items: end;
+                padding-bottom: 10px;
+
+                div {
+                    display: flex;
+                    align-items: end;
+                    gap: 17px;
+
+                    i {
+                        font-size: 2.6vw;
+                        margin: 1.3vw;
+                        margin: 0px;
+                    }
+                }
+                h2 {
+                    font-size: 2.7vw;
+                }
+            }
+
+            .middle {
+                height: auto;
+                gap: 1.33%;
+                
+                .cardBox {
+                    width: 24%;
+                    height: auto;
+                    margin: 0px;
+
+                    a {
+                        flex: none;
+                        max-height: none;
+                        aspect-ratio: 13 / 18;
+
+                        .card {
+                            height: 100%;
+                            border-radius: 12px;
+                            border-width: 3px;
+
+                            img {
+                                border-radius: 11px;
+                            }
+
+                            .GEO, .ENG {
+                                height: 4.2vw;
+                                width: 6.4vw;
+                                border-width: 2px;
+                                border-radius: 1.3vw;
+                                bottom: 1.6vw;
+
+                                span {
+                                    font-size: 1.9vw;
+                                    font-weight: normal;
+                                }
+                            }
+                            .GEO {
+                                left: 1.3vw;
+                            }
+                            .ENG {
+                                right: 1.3vw;
+                            }
+                        }
+                    }
+                    .title {
+                        p {
+                            font-size: 12px;
+                            font-weight: normal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .popular {
+        .inside {
+            max-width: 95%;
+
+            .up {
+                align-items: end;
+                padding-bottom: 10px;
+
+                div {
+                    display: flex;
+                    align-items: end;
+                    gap: 17px;
+
+                    i {
+                        font-size: 2.6vw;
+                        margin: 1.3vw;
+                        margin: 0px;
+                    }
+                }
+                h2 {
+                    font-size: 2.7vw;
+                }
+            }
+
+            .middle {   
+                gap: 1.4%;
+
+                a {
+                    width: 49.3%;
+
+                    .cards {
+                        margin-left: 0px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 580px) { 
+    .main {
+        .inside {
+            .middle {
+                gap: 2%;
+                
+                .cardBox {
+                    width: 32%;
+                }
+            }
+        }
+    }
+}

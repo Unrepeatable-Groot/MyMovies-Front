@@ -1,0 +1,168 @@
+<div class="container-xl" *ngIf="media">
+
+  <div class="mainBox">
+    <div class="left">
+      <div class="card">
+        <img [src]="media.cardImageUrl" alt="Banner">
+      </div>
+      <div class="trailer">
+        <button><i class="fa-sharp fa-regular fa-camera-movie"></i>Trailer</button>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="video">
+        <img [src]="media.bannerImageUrl" [alt]="media.title">
+        <div class="loading"></div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="descriptions">
+        <div class="actions" *ngIf="authService.isLoggedIn()">
+          <button class="favBtn" (click)="toggleFavorite()" [class.active]="isFavorite" title="Favorite">
+            <i class="fa-solid fa-bookmark"></i>
+          </button>
+          <button class="likeBtn" (click)="react(0)" [class.active]="currentReaction === 0" title="Like">
+            <i class="fa-solid fa-thumbs-up"></i>
+            <span>{{ likesCount }}</span>
+          </button>
+          <button class="dislikeBtn" (click)="react(1)" [class.active]="currentReaction === 1" title="Dislike">
+            <i class="fa-solid fa-thumbs-down"></i>
+            <span>{{ dislikesCount }}</span>
+          </button>
+        </div>
+
+        <div id="card2">
+          <img [src]="media.cardImageUrl" alt="Banner">
+        </div>
+        <p><span id="name">{{ media.title }}</span></p>
+        <p><span>IMDB Rating: </span>{{ media.imdbRating }}</p>
+        <p><span>Release Year: </span>{{ media.releaseYear }}</p>
+        <p><span>Genre: </span>{{ media.genre }}</p>
+        <p><span>Director: </span>{{ media.director }}</p>
+        <p><span>Actors: </span>{{ media.actors }}</p>
+        <p id="description">
+          <span>Description: </span>
+          {{ media.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="inside">
+    <div class="up">
+      <h2>
+        {{ type === 'movies' ? 'Movies' :
+           type === 'animations' ? 'Animations' : 'Series' }}
+      </h2>
+      <div>
+        <i class="fa-solid fa-arrow-left" (click)="scrollRelated('left')"></i>
+        <i class="fa-solid fa-arrow-right" (click)="scrollRelated('right')"></i>
+      </div>  
+    </div>
+
+    <div class="middle">
+      
+        <a *ngFor="let item of relatedMedia"
+        [routerLink]="['/', type, item.id]">
+        <div class="card">
+          <img [src]="item.cardImageUrl" [alt]="item.title">
+          <div class="GEO"><span>GEO</span></div> 
+          <div class="ENG"><span>ENG</span></div>
+          <div class="hover"></div>
+          <div class="button"></div>
+          <i class="fa-solid fa-play"></i>
+        </div>
+      </a>
+    </div>
+    <div class="down">
+      <div class="title" *ngFor="let names of relatedMedia">
+        <p>{{ names.title }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="commentBox">
+  <div class="comment">
+    <h3>Comments</h3>
+
+    <div class="commentInput" *ngIf="authService.isLoggedIn(); else notAuth">
+      <textarea
+        [(ngModel)]="newComment"
+        placeholder="Write a comment..."
+        maxlength="500">
+      </textarea>
+      <div class="inputFooter">
+        <span class="charCount" [class.nearLimit]="charCount > 470">
+          {{ charCount }}/500
+        </span>
+        <span class="error" *ngIf="commentError">{{ commentError }}</span>
+        <button (click)="submitComment()">Post</button>
+      </div>
+    </div>
+    <ng-template #notAuth>
+      <p class="notAuth">You must be logged in to comment.</p>
+    </ng-template>
+
+    <!-- კომენტარების სია -->
+    <div class="commentList">
+      <div class="commentItem"
+           *ngFor="let comment of comments"
+           [class.editing]="editingCommentId === comment.id">
+
+        <div class="commentContent">
+          <span [class.adminName]="isAdminComment(comment)">
+            {{ comment.username }}
+          </span>
+
+          <!-- ჩვეულებრივი ჩვენება -->
+          <p *ngIf="editingCommentId !== comment.id">{{ comment.content }}</p>
+
+          <!-- რედაქტირების რეჟიმი -->
+          <div class="editBox" *ngIf="editingCommentId === comment.id">
+            <textarea [(ngModel)]="editingContent" maxlength="500"></textarea>
+            <div class="editActions">
+              <button class="saveBtn" (click)="saveEdit(comment)">Save</button>
+              <button class="cancelBtn" (click)="cancelEdit()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ღილაკები -->
+        <div class="commentActions" *ngIf="canEdit(comment) || canDelete(comment)">
+          <button class="editBtn" *ngIf="canEdit(comment)" (click)="startEdit(comment)" title="Edit">
+            <i class="fa-solid fa-pen"></i>
+          </button>
+          <button class="deleteBtn" *ngIf="canDelete(comment)" (click)="deleteComment(comment.id)" title="Delete">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Buttons -->
+<div class="adminActions" *ngIf="authService.isAdmin()">
+  <button class="editBtn" [routerLink]="['/edit-media', id]">
+    <i class="fa-solid fa-pen"></i> Edit
+  </button>
+  <button class="deleteBtn" (click)="showDeleteModal = true">
+    <i class="fa-solid fa-trash"></i> Delete
+  </button>
+</div>
+
+<!-- Delete Modal -->
+<div class="overlay" *ngIf="showDeleteModal" (click)="showDeleteModal = false"></div>
+<div class="deleteModal" *ngIf="showDeleteModal">
+  <h3>Delete Movie</h3>
+  <p>Are you sure you want to delete <strong>{{ media?.title }}</strong>?</p>
+  <div class="modalButtons">
+    <button class="confirmDelete" (click)="deleteMovie()">Delete</button>
+    <button class="cancelDelete" (click)="showDeleteModal = false">Cancel</button>
+  </div>
+</div>
+
+</div>

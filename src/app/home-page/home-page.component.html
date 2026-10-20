@@ -1,0 +1,186 @@
+<div class="main">
+    <div class="inside">
+        <div class="up">
+            <h2>Latest</h2>
+            <div>
+                <i class="fa-solid fa-arrow-left" (click)="scrollRelated('left', $event)"></i>
+                <i class="fa-solid fa-arrow-right" (click)="scrollRelated('right', $event)"></i> 
+            </div>
+        </div>
+        <div class="middle">
+            <div class="cardBox" *ngFor="let item of latest">
+                <a [routerLink]="['/', item.category, item.id]">
+                    <div class="card">
+                        <img [src]="item.cardImageUrl" [alt]="item.title">
+                        <div class="GEO"><span>GEO</span></div> 
+                        <div class="ENG"><span>ENG</span></div>
+                        <div class="hover"></div>
+                        <div class="button"></div>
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <div class="title">
+                    <p>{{ item.title }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main4">
+    <div class="inside">
+        <div class="up">
+            <h2>Movies</h2>
+            <div>
+                <i class="fa-solid fa-arrow-left" (click)="scrollRelated('left', $event)"></i>
+                <i class="fa-solid fa-arrow-right" (click)="scrollRelated('right', $event)"></i>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="cardBox" *ngFor="let item of movies">
+                <a [routerLink]="['/', item.category, item.id]">
+                    <div class="card">
+                        <img [src]="item.cardImageUrl" [alt]="item.title">
+                        <div class="GEO"><span>GEO</span></div> 
+                        <div class="ENG"><span>ENG</span></div>
+                        <div class="hover"></div>
+                        <div class="button"></div>
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <div class="title">
+                    <p>{{ item.title }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main3">
+    <div class="inside">
+        <div class="up">
+            <h2>Serials</h2>
+            <div>
+                <i class="fa-solid fa-arrow-left" (click)="scrollRelated('left', $event)"></i>
+                <i class="fa-solid fa-arrow-right" (click)="scrollRelated('right', $event)"></i>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="cardBox" *ngFor="let item of serials">
+                <a [routerLink]="['/', item.category, item.id]">
+                    <div class="card">
+                        <img [src]="item.cardImageUrl" [alt]="item.title">
+                        <div class="GEO"><span>GEO</span></div> 
+                        <div class="ENG"><span>ENG</span></div>
+                        <div class="hover"></div>
+                        <div class="button"></div>
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <div class="title">
+                    <p>{{ item.title }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="popular">
+    <div class="inside">
+        <div class="up">
+            <h2>Popular Movies</h2>
+            <div>
+                <i class="fa-solid fa-arrow-left" (click)="scrollRelated('left', $event)"></i>
+                <i class="fa-solid fa-arrow-right" (click)="scrollRelated('right', $event)"></i>
+            </div>
+        </div>
+        <div class="middle">
+            <a *ngFor="let item of popularMovies"
+                [routerLink]="['/', item.category, item.id]">
+                <div class="cards">
+                    <img [src]="item.bannerImageUrl" alt="Banner">
+                    <div class="hover"></div>
+                    <div class="button"></div>
+                    <i class="fa-solid fa-play"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="popular">
+    <div class="inside">
+        <div class="up">
+            <h2>Popular Serials</h2>
+            <div>
+                <i class="fa-solid fa-arrow-left" (click)="scrollRelated('left', $event)"></i>
+                <i class="fa-solid fa-arrow-right" (click)="scrollRelated('right', $event)"></i>
+            </div>
+        </div>
+        <div class="middle">
+            <a *ngFor="let item of popularSerials"
+                [routerLink]="['/', item.category, item.id]">
+                <div class="cards">
+                    <img [src]="item.bannerImageUrl" alt="Banner">
+                    <div class="hover"></div>
+                    <div class="button"></div>
+                    <i class="fa-solid fa-play"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="popular">
+    <div class="inside">
+        <div class="up">
+            <h2>Popular Animations</h2>
+            <div>
+                <i class="fa-solid fa-arrow-left" (click)="scrollRelated('left', $event)"></i>
+                <i class="fa-solid fa-arrow-right" (click)="scrollRelated('right', $event)"></i>
+            </div>
+        </div>
+        <div class="middle">
+            <a *ngFor="let item of popularAnimations"
+                [routerLink]="['/', item.category, item.id]">
+                <div class="cards">
+                    <img [src]="item.bannerImageUrl" alt="Banner">
+                    <div class="hover"></div>
+                    <div class="button"></div>
+                    <i class="fa-solid fa-play"></i>
+                </div>
+            </a>    
+        </div>
+    </div>
+</div>
+
+
+<div class="main main2">
+    <div class="inside">
+        <div class="up">
+            <h2>Animations</h2>
+            <div>
+                <i class="fa-solid fa-arrow-left" (click)="scrollRelated('left', $event)"></i>
+                <i class="fa-solid fa-arrow-right" (click)="scrollRelated('right', $event)"></i>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="cardBox" *ngFor="let item of animations">
+                <a [routerLink]="['/', item.category, item.id]">
+                    <div class="card">
+                        <img [src]="item.cardImageUrl" [alt]="item.title">
+                        <div class="GEO"><span>GEO</span></div> 
+                        <div class="ENG"><span>ENG</span></div>
+                        <div class="hover"></div>
+                        <div class="button"></div>
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </a>
+                <div class="title">
+                    <p>{{ item.title }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

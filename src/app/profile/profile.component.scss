@@ -1,0 +1,269 @@
+.profile-container {
+    display: flex;
+    min-height: 80vh;
+    padding: 40px 70px;
+    gap: 40px;
+
+    .left {
+        width: 300px;
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid yellow;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background-color: rgb(220, 220, 220);
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            i {
+                font-size: 50px;
+                color: black;
+            }
+        }
+
+        h2 {
+            color: black;
+            margin: 0px;
+            font-size: 22px;
+        }
+
+        .email {
+            color: grey;
+            font-size: 14px;
+            margin: 8px 0px;
+        }
+
+        .role {
+            color: yellow;
+            text-shadow: 0px 0px 5px black;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0px 0px 20px 0px;
+        }
+
+        .actions {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            button {
+                width: 100%;
+                padding: 12px;
+                // background-color: rgb(35, 35, 35);
+                border: 2px solid rgb(50, 50, 50);
+                border-radius: 10px;
+                color: black;
+                font-size: 14px;
+                cursor: pointer;
+                transition: all 0.3s;
+                text-align: left;
+
+                i {
+                    margin-right: 8px;
+                    color: yellow;
+                    text-shadow: 0px 0px 5px black;
+                }
+
+                &:hover {
+                    border-color: yellow;
+                }
+            }
+
+            .admin-btn {
+                border-color: rgb(0, 150, 0);
+
+                i {
+                    color: rgb(0, 200, 0);
+                }
+
+                &:hover {
+                    border-color: rgb(0, 200, 0);
+                }
+            }
+
+            .logout-btn {
+                border-color: rgb(150, 0, 0);
+
+                i {
+                    color: red;
+                }
+
+                &:hover {
+                    border-color: red;
+                }
+            }
+        }
+
+        .form-box {
+            width: 100%;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            input {
+                width: 100%;
+                padding: 10px;
+                border: 2px solid rgb(50, 50, 50);
+                border-radius: 10px;
+                color: black;
+                font-size: 14px;
+                outline: none;
+                box-sizing: border-box;
+                transition: border-color 0.3s;
+
+                &:focus {
+                    border-color: yellow;
+                }
+
+                &::placeholder {
+                    color: rgb(80, 80, 80);
+                }
+            }
+
+            button {
+                padding: 10px;
+                background-color: yellow;
+                border: none;
+                border-radius: 10px;
+                color: black;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background-color: rgb(220, 220, 0);
+                }
+            }
+        }
+
+        .success {
+            color: rgb(0, 200, 0);
+            font-size: 13px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
+
+    .right {
+        flex: 1;
+
+        h3 {
+            color: black;
+            font-size: 20px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgb(40, 40, 40);
+            padding-bottom: 10px;
+            position: relative;
+
+            .fav-count {
+                font-size: 15px;
+                color: grey;
+                margin-left: 8px;
+                position: absolute;
+                right: 0px;
+
+                &.nearLimit {
+                    color: red;
+                }
+            }
+        }
+
+        .favorites-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            .fav-card {
+                width: 150px;
+                position: relative;
+
+                a {
+                    text-decoration: none;
+
+                    img {
+                        width: 100%;
+                        height: 220px;
+                        object-fit: cover;
+                        border-radius: 10px;
+                        border: 2px solid rgb(50, 50, 50);
+                        transition: border-color 0.3s;
+
+                        &:hover {
+                            border-color: yellow;
+                        }
+                    }
+
+                    p {
+                        color: black;
+                        font-size: 13px;
+                        text-align: center;
+                        margin: 5px 0px 0px 0px;
+                    }
+                }
+
+                .remove-btn {
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background-color: rgba(0, 0, 0, 0.7);
+                    border: 2px solid red;
+                    color: red;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 12px;
+                    transition: all 0.3s;
+
+                    &:hover {
+                        background-color: red;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .no-favorites {
+            color: grey;
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        padding: 20px;
+
+        .left {
+            width: 100%;
+            min-width: unset;
+        }
+    }
+}
