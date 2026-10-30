@@ -47,15 +47,67 @@
         <label>Password</label>
         <input type="password" [(ngModel)]="registerDto.password" placeholder="Enter your password">
       </div>
+      <a class="forgot-link" (click)="openForgot()">Forgot password?</a>
 
       <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
-      <button class="submit" (click)="onRegister()">Register</button>
+      <button class="submit" (click)="onRegisterClick()" [disabled]="isSending">
+        {{ isSending ? 'Sending code...' : 'Register' }}
+      </button>
 
       <p class="switch">Already have an account? 
         <span (click)="switchMode()">Login</span>
       </p>
     </div>
 
+  </div>
+</div>
+
+<div class="code-backdrop" *ngIf="showCodeModal">
+  <div class="code-modal">
+    <h3>Verify your email</h3>
+    <p>We sent a 5-digit code to <b>{{ registerDto.email }}</b>. Check your spam folder too.</p>
+    <input type="text" inputmode="numeric" maxlength="5"
+           [(ngModel)]="verificationCode" placeholder="00000"
+           (keyup.enter)="confirmCode()">
+    <button class="confirm-btn" (click)="confirmCode()"
+            [disabled]="verificationCode.length !== 5">Confirm</button>
+    <button class="cancel-btn" (click)="cancelCode()">Cancel</button>
+  </div>
+</div>
+
+
+<div class="code-backdrop" *ngIf="forgotStep > 0">
+  <div class="code-modal">
+
+    <ng-container *ngIf="forgotStep === 1">
+      <h3>Reset password</h3>
+      <p>Enter your account email and we will send you a code.</p>
+      <input class="plain-input" type="email" [(ngModel)]="resetEmail"
+             placeholder="Email" (keyup.enter)="sendResetCode()">
+      <button class="confirm-btn" (click)="sendResetCode()" [disabled]="resetLoading">
+        {{ resetLoading ? 'Sending...' : 'Send code' }}
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="forgotStep === 2">
+      <h3>Enter the code</h3>
+      <p>We sent a 5-digit code to <b>{{ resetEmail }}</b>. Check your spam folder too.</p>
+      <input type="text" inputmode="numeric" maxlength="5" [(ngModel)]="resetCode"
+             placeholder="00000" (keyup.enter)="checkResetCode()">
+      <button class="confirm-btn" (click)="checkResetCode()"
+              [disabled]="resetCode.length !== 5 || resetLoading">Continue</button>
+    </ng-container>
+
+    <ng-container *ngIf="forgotStep === 3">
+      <h3>New password</h3>
+      <input class="plain-input" type="password" [(ngModel)]="newPassword"
+             placeholder="New password" (keyup.enter)="saveNewPassword()">
+      <button class="confirm-btn" (click)="saveNewPassword()"
+              [disabled]="!newPassword || resetLoading">Save</button>
+    </ng-container>
+
+    <p class="modal-error" *ngIf="resetError">{{ resetError }}</p>
+    <button class="cancel-btn" (click)="closeForgot()">Cancel</button>
   </div>
 </div>

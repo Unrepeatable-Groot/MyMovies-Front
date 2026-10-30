@@ -119,3 +119,84 @@
         }
     }
 }
+
+.code-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .code-modal {
+        background: white;
+        width: 340px;
+        border-radius: 20px;
+        padding: 28px;
+        text-align: center;
+        box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.3);
+
+        h3 { color: black; margin-bottom: 10px; }
+        p { color: grey; font-size: 14px; margin-bottom: 18px; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgb(50, 50, 50);
+            border-radius: 10px;
+            font-size: 24px;
+            letter-spacing: 10px;
+            text-align: center;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+            outline: none;
+            &:focus { border-color: yellow; }
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 13px;
+            background-color: yellow;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            &:disabled { opacity: 0.5; cursor: not-allowed; }
+        }
+
+        .cancel-btn {
+            margin-top: 12px;
+            background: none;
+            border: none;
+            color: grey;
+            cursor: pointer;
+            &:hover { text-decoration: underline; }
+        }
+    }
+}
+
+
+.code-backdrop .code-modal {
+    .plain-input {
+        font-size: 16px;
+        letter-spacing: normal;
+        text-align: left;
+    }
+    .modal-error {
+        color: red;
+        font-size: 14px;
+        margin-top: 12px;
+    }
+}
+
+.forgot-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: grey;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+    &:hover { color: yellow; }
+}

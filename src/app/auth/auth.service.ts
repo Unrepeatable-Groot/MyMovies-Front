@@ -8,17 +8,33 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
 
-  private apiUrl = `${environment.apiUrl}/user`;
+  private apiUrl = `${environment.apiUrl}`;
   profileImage$ = new BehaviorSubject<string | null>(null);
 
   constructor(private http: HttpClient) {}
 
-  register(dto: { username: string; email: string; password: string }) {
-    return this.http.post<string>(`${this.apiUrl}/register`, dto, { responseType: 'text' as 'json' });
+  register(dto: { username: string; email: string; password: string; code: string }) {
+    return this.http.post<string>(`${this.apiUrl}/User/register`, dto, { responseType: 'text' as 'json' });
+  }
+
+  sendCode(username: string, email: string, password: string) {
+    return this.http.post(`${this.apiUrl}/User/send-code`, { username, email, password }, { responseType: 'text' });
   }
 
   login(dto: { email: string; password: string }) {
-    return this.http.post<string>(`${this.apiUrl}/login`, dto, { responseType: 'text' as 'json' });
+    return this.http.post<string>(`${this.apiUrl}/User/login`, dto, { responseType: 'text' as 'json' });
+  }
+
+  forgotPassword(email: string) {
+    return this.http.post(`${this.apiUrl}/User/forgot-password`, { email }, { responseType: 'text' });
+  }
+
+  verifyResetCode(email: string, code: string) {
+    return this.http.post(`${this.apiUrl}/User/verify-reset-code`, { email, code }, { responseType: 'text' });
+  }
+
+  resetPassword(email: string, code: string, newPassword: string) {
+    return this.http.post(`${this.apiUrl}/User/reset-password`, { email, code, newPassword }, { responseType: 'text' });
   }
 
   saveToken(token: string) {
@@ -94,7 +110,7 @@ export class AuthService {
       next: user => this.profileImage$.next(user.profileImageUrl || null),
       error: (err) => {
         if (err.status === 401) {
-          this.logout(); // token invalid → სუფთა logout
+          this.logout();
         }
         this.profileImage$.next(null);
       }

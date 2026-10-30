@@ -52,28 +52,52 @@ header {
             display: none;
         }
 
-        input {
-            width: 220px;
-            height: 30.5px;
-            padding: 0px 15px;
+        form {
+            display: flex;
+            align-items: center;
+            height: 32px;
             margin: 0px 15px;
-            border: none;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            margin-right: 0px;
+            border-radius: 10px;
+            overflow: hidden;
             background-color: rgb(38, 38, 38);
+            border: 1px solid transparent;
+            transition: border-color 0.3s, box-shadow 0.3s;
 
-            color: wheat;
-            font-weight: bold;
-        }
-        button {
-            height: 30px;
-            width: 35px;
-            border: none;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-            margin-right: 15px;
-            background-color: rgb(38, 38, 38);
+            &:focus-within {
+                border-color: white;
+                box-shadow: 0px 0px 5px white;
+            }
+
+            input {
+                width: 220px;
+                height: 100%;
+                padding: 0px 15px;
+                margin: 0;
+                border: none;
+                outline: none;
+                background: transparent;
+                color: wheat;
+                font-weight: bold;
+
+                &:-webkit-autofill,
+                &:-webkit-autofill:hover,
+                &:-webkit-autofill:focus {
+                    -webkit-box-shadow: 0 0 0px 1000px rgb(38, 38, 38) inset;
+                    -webkit-text-fill-color: wheat;
+                    caret-color: wheat;
+                    transition: background-color 9999s ease-in-out 0s;
+                }
+            }
+
+            button {
+                height: 100%;
+                width: 35px;
+                margin: 0;
+                border: none;
+                outline: none;
+                background: transparent;
+                cursor: pointer;
+            }
         }
         i {
             color: white;
