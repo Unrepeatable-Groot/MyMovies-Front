@@ -179,22 +179,18 @@ header {
         right: 0px;
         z-index: 0;
 
-        input {
-            width: 277px !important;
+        form {
             position: absolute;
             top: 15px;
             left: 15px;
-        }
-        button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
+            width: 90%;
+            margin: 0 !important;
+            transform: translateX(3px);
 
-            i {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+            input {
+                flex: 1;
+                width: auto;
+                min-width: 0;
             }
         }
         #Facebook {
@@ -247,7 +243,7 @@ header {
     }
     #right {
         margin: 0px !important;
-        height: 240px;
+        height: 220px;
         right: 0px;
         display: flex;
         justify-content: center;
