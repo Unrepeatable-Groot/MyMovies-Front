@@ -19,6 +19,7 @@
         <label>Password</label>
         <input type="password" [(ngModel)]="loginDto.password" placeholder="Enter your password">
       </div>
+      <a class="forgot-link" (click)="openForgot()">Forgot password?</a>
 
       <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
