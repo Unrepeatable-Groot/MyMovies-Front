@@ -200,3 +200,19 @@
     text-decoration: underline;
     &:hover { color: yellow; }
 }
+
+
+@media screen and (max-width: 500px) { 
+    .box {
+        padding: 24px !important;
+
+        h2 {
+            font-size: 20px !important;
+            margin-bottom: 12px !important;
+        }
+        button {
+            font-size: 14px !important;
+            padding: 10px !important;
+        }
+    }
+}

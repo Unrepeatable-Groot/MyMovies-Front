@@ -497,3 +497,21 @@
         }
     }
 }
+
+@media screen and (max-width: 400px) { 
+    .main {
+        .inside {
+            .middle {
+                .cardBox {
+                    a {
+                        .card {
+                            img {
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
