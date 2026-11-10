@@ -271,12 +271,31 @@ header {
     }
 }
 @media screen and (max-width: 430px) {
-    #right {
-        width: 100%;
+    header {
+        height: 55px;
 
-        input {
-            width: 315px !important;
-        }   
+        #right {
+            width: 100%;
+            
+
+            input {
+                width: 315px !important;
+            }  
+            
+        }
+
+        #left {
+            h1 {
+                height: 40px !important;
+            }
+            
+        }
+        .fa-solid.fa-bars {
+            font-size: 18px !important;
+        }
+        input[type="checkbox"]:checked ~ #right {
+            top: 55px;
+        }
     }
 }
 @media screen and (max-width: 390px) {
