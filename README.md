@@ -27,3 +27,11 @@ The app is built with Angular and SCSS, with Font Awesome icons. An authenticati
 ## Hosting
 
 The frontend is hosted on Netlify and the backend API runs on Render. The production environment file points to the Render URL, and the backend allows the Netlify origin through its CORS policy. Because Angular is a single-page app, Netlify needs a redirect rule that sends all routes to the index page so that direct links and page refreshes work.
+
+## Links
+
+GitHub Back: https://github.com/Unrepeatable-Groot/MyMovies-Back 
+
+Swagger: https://mymovies-u2vz.onrender.com/swagger 
+
+Site: https://mymoviesfront.netlify.app/
